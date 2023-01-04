@@ -5,6 +5,7 @@ import { Header } from './Header';
 import { Body } from './Body';
 import { Footer } from './Footer';
 import { NewComponent } from './NewComponent';
+import { Cars } from './Cars';
 
 function App() {
 
@@ -27,8 +28,18 @@ function App() {
     {id: 11, name: "Christopher", age: 100},
 ]
 
+const topCars = [
+  {manufacturer:'BMW', model:'m5cs'},
+  {manufacturer:'Mercedes', model:'e63s'},
+  {manufacturer:'Audi', model:'rs6'}
+]
+
   return (
+    <>
     <NewComponent students={students}/>
+    <Cars cars = {topCars}/>
+    </>
+       
   );
 }
 
