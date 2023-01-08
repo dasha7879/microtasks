@@ -1,27 +1,36 @@
-import { isPropertySignature } from "typescript"
-import React from 'react';
-import { debug } from "console";
-
 type NewComponentType = {
-    students: Array<StudentType>
-
-    // students: StudentType[]-second way
-}
-type StudentType = {
-    id: number,
-    name: string,
-    age: number
+    money: Array<Banknota>
+    filter: FilterType
 }
 
-export const NewComponent = (props: NewComponentType, index: number) => {
-    let result = props.students.map((student) =>
-        <li key={student.id}>{`
-        name ${student.name},
-        age ${student.age}`}
-        </li>)
+type Banknota = {
+    banknots: string
+    value: number
+    number: string
+}
+
+type FilterType='all'|'Dollars'|'RUBLS'
+
+
+export const NewComponent = (props:NewComponentType) => {
+const {filter, money} = props;
+let currentMoney = money.filter((oneBanknote)=> oneBanknote.banknots === filter || filter === 'all');
+
+
+
     return (
         <ul>
-            {result}
+            {currentMoney.map((oneBanknote, index: number) => {
+                return (
+                    <li key={index}>
+                        <span>{oneBanknote.banknots}</span>
+                        <span>{oneBanknote.number}</span>
+                        <span>{oneBanknote.value}</span>
+                    </li>
+                )
+            }
+            )
+            }
         </ul>
     )
 }
